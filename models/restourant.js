@@ -13,8 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Restourant.hasOne(models.Address, {
         foreignKey :'restourantId',
-        as: 'addresss'
+        as: 'addresses'
       });
+      Restourant.hasMany(models.Review ,{
+        foreignKey : 'restourantId',
+        as:'reviews'
+      })
     }
   }
  Restourant.init({
