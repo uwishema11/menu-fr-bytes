@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Dish.belongsToMany(Category, {through: categories_dishes})
+      Dish.belongsToMany(Category, {through: 'categories_dishes'})
     }
   }
  Dish.init({
