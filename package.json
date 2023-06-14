@@ -8,8 +8,7 @@
     "dev": "cross-env NODE_ENV=development nodemon --exec index.js",
     "migration": "npx sequelize-cli db:migrate",
     "down": "npx sequelize-cli db:migrate:undo:all",
-    "seed": "npx sequelize-cli db:seed:all",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "seed": "npx sequelize-cli db:seed:all"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +23,7 @@
     "@babel/cli": "^7.21.5",
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.4",
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.22",
     "sequelize-cli": "^6.6.0"
   }

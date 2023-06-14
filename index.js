@@ -1,6 +1,11 @@
 
-
+const express = require('express');
 const sequelize = require('./config');
+
+const app = express();
+
+// Parse URL-encoded form data
+app.use(express.urlencoded({ extended: false }));
 
 const connectToDatabase = async () => {
   try {
@@ -13,3 +18,7 @@ const connectToDatabase = async () => {
 };
 
 connectToDatabase();
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
