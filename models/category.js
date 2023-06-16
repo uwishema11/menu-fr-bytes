@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Category extends Model {
     /**
@@ -11,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Category.belongsToMany(Dish ,{through: 'categories_dishes'})
+      Category.belongsToMany(models.Dish,{through: 'categories_dishes'})
     }
   }
   Category.init({
