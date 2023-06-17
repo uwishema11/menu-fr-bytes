@@ -1,8 +1,6 @@
 
-//  const Restourant = require ('../models/restaurant.model')
  const restaurantService = require ('../services/restaurantService')
- const models = require ('../models');
-const { Model } = require('sequelize');
+
 
 
 exports.createRestourant =async (req, res) => {
@@ -20,8 +18,8 @@ exports.createRestourant =async (req, res) => {
     if(error){
         console.log("there is an erro")
     }
-    const createdRestaurant  =await models.Restourant.create(result)
-    // const createdRestaurant  =await restaurantService.addRestaurant(result)
+    // const createdRestaurant  =await models.Restourant.create(result)
+    const createdRestaurant  =await restaurantService.addRestaurant(result)
     
     console.log(createdRestaurant)
   res.status(200).json({
@@ -33,3 +31,21 @@ exports.createRestourant =async (req, res) => {
     console.log(err)
   }
 };
+
+exports.getAllRestaurants = async(req,res) =>{
+  
+  try{
+      const restaurants = await restaurantService.getRestaurants();
+      return res.status(200).json({
+        success :true,
+        result :restaurants
+      })
+  }
+  catch (error){
+    console.log(error)
+    res.status(500).json({
+      success: 'failled',
+      result:error.message
+    })
+  }
+}

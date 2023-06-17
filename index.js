@@ -1,16 +1,13 @@
-const express = require('express');
-const sequelize = require('./config'); 
-const morgan = require('morgan');
-const restourantRoute = require('./routers/restourantRoute');
 
+const sequelize = require('./config')
+const http = require('http');
+const app = require('./app')
+const server = http.createServer(app);
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(morgan('dev'));
-app.use('/api/v1/restaurant', restourantRoute);
+const port = process.env.PORT || 3000;
 
 // Connecting with Database
+
 const connectToDatabase = async () => {
   try {
     await sequelize.authenticate();
@@ -22,6 +19,7 @@ const connectToDatabase = async () => {
 
 connectToDatabase();
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+
+server.listen(port, () =>
+  console.log(`restaurant Menu Server Started & Listening on PORT: ${port}`)
+);
