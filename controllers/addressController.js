@@ -1,7 +1,7 @@
 
 const addressService = require('../services/addressesService')
 
-exports.createAddresses = async(data) =>{
+exports.createAddresses = async(req,res) =>{
     try{
         const createdAddress =req.body
         
@@ -12,7 +12,7 @@ exports.createAddresses = async(data) =>{
                 message: error.message
             })
         }
-        await addressService.createAddress(createdAddress);
+        await addressService.addAddress(createdAddress);
 
         return res.status(200).json({
             success: true,
