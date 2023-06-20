@@ -5,24 +5,21 @@
 
 exports.createRestourant =async (req, res) => {
   try{
-    const result = {
-    name: "Green restaurant",
-    description:"testing apis",
-    rating:2,
-    telephone: "+250783210279",
-    hours:"7:00 -23:00"
-    }
-    console.log(req.body);
-
-    const {error} =req.body
+    const result = req.body
+  
+    const {error} =result
     if(error){
         console.log("there is an erro")
+        return res.status(400).json({
+          success: "failled",
+          message: error.message
+        })
     }
-    // const createdRestaurant  =await models.Restourant.create(result)
+  
     const createdRestaurant  =await restaurantService.addRestaurant(result)
     
     console.log(createdRestaurant)
-  res.status(200).json({
+    res.status(200).json({
     status: true,
     data: createdRestaurant ,
   });
