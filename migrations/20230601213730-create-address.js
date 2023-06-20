@@ -9,6 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      restourantId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Restourants', key: 'id' },
+      },
       street_number: {
         type: Sequelize.STRING
       },
